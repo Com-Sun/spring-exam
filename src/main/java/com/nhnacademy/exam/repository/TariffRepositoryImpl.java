@@ -1,15 +1,15 @@
 package com.nhnacademy.exam.repository;
 
 import com.nhnacademy.exam.parser.DataParser;
-import com.nhnacademy.exam.parser.Tariff;
+import com.nhnacademy.exam.parser.WaterBill;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class TariffRepositoryImpl implements TariffRepository{
+public class TariffRepositoryImpl implements TariffRepository {
     private final DataParser dataParser;
-    private Collection<Tariff> waterBill;
+    private Collection<WaterBill> waterBill;
     private boolean isLoaded = false;
 
     public TariffRepositoryImpl(DataParser dataParser) {
@@ -23,11 +23,15 @@ public class TariffRepositoryImpl implements TariffRepository{
     }
 
     @Override
-    public Collection<Tariff> findFeeByUsedWaterQuantity(int usedWater) {
+    public Collection<WaterBill> findFeeByUsedWaterQuantity() {
         return waterBill.stream()
-            .filter(waterBill -> waterBill.isUsedWaterOverInterval(usedWater))
-            .filter(waterBill -> waterBill.isUsedWaterUnderInterval(usedWater))
+            .filter(waterBill -> waterBill.isUsedWaterOverInterval(dataParser.) &&
+                waterBill.isUsedWaterUnderInterval(usedWater))
+            .sorted(
+                Comparator.comparingInt(waterBill -> Integer.parseInt(waterBill.getUnitPrice())))
+            .limit(5)
             .collect(Collectors.toList());
+        // map filter reduce
     }
 
     @Override

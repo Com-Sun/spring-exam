@@ -1,20 +1,19 @@
 package com.nhnacademy.exam.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.nhnacademy.exam.config.MainConfiguration;
 import com.nhnacademy.exam.parser.DataParser;
-import com.nhnacademy.exam.parser.Tariff;
+import com.nhnacademy.exam.parser.WaterBill;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TariffRepositoryImplTest {
+class WaterBillRepositoryImplTest {
     TariffRepository tariffRepository;
     DataParser dataParser;
-    List<Tariff> waterBill;
+    List<WaterBill> waterBill;
 
     @BeforeEach
     void setUp() {

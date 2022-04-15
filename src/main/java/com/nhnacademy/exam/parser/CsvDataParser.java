@@ -6,13 +6,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Scanner;
 
 public class CsvDataParser implements DataParser{
-    Collection<Tariff> tariff = new ArrayList<>();
-
+    Collection<WaterBill> waterBill = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
+    private final int input = sc.nextInt();
     @Override
-    public Collection<Tariff> parse(String fileLocation) throws IOException {
+    public Collection<WaterBill> parse(String fileLocation) throws IOException {
         try(
             InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileLocation);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -20,13 +21,21 @@ public class CsvDataParser implements DataParser{
             )
         {
             String line = "";
+            int count = 0;
             while ((line = br.readLine()) != null) {
                 String[] readTariff = line.split(",");
-                tariff.add(new Tariff(readTariff[0], readTariff[1], readTariff[2], readTariff[3], readTariff[4], readTariff[5], readTariff[6]));
+                if (count != 0) {
+                    waterBill.add(new WaterBill(readTariff[0], readTariff[1], readTariff[2], readTariff[3], readTariff[4], readTariff[5], readTariff[6], Integer.parseInt(readTariff[6]) * input));
+                }
+                count++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return tariff;
+        return waterBill;
+    }
+
+    public int getInput() {
+        return input;
     }
 }
