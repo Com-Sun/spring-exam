@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.util.Collection;
 
 public interface DataParser {
-    Collection<WaterBill> parse(String fileLocation) throws IOException;
+    Collection<Tariff> parse(String fileLocation) throws IOException;
 }
