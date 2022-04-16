@@ -16,7 +16,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 class WaterBillRepositoryImplTest {
     TariffRepository tariffRepository;
     DataParser dataParser;
-    List<WaterBill> waterBill;
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(MainConfiguration.class);
 
     @BeforeEach

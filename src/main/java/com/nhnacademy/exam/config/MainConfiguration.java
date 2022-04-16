@@ -12,17 +12,12 @@ public class MainConfiguration {
 
     @Bean
     public TariffRepository tariffRepository() {
-        return new TariffRepositoryImpl(csvDataParser());
-    }
-
-    @Bean
-    public CsvDataParser csvDataParser() {
-        return new CsvDataParser();
+        return new TariffRepositoryImpl(dataParser());
     }
 
     @Bean
     public DataParser dataParser () {
-        return csvDataParser();
+        return new CsvDataParser();
     }
 
 }
