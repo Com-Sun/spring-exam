@@ -1,5 +1,6 @@
 package com.nhnacademy.exam.config;
 
+import com.nhnacademy.exam.aspect.LoggerAspect;
 import com.nhnacademy.exam.parser.CsvDataParser;
 import com.nhnacademy.exam.parser.DataParser;
 import com.nhnacademy.exam.report.ResultReport;
@@ -10,8 +11,10 @@ import com.nhnacademy.exam.service.WaterUsageFeeService;
 import com.nhnacademy.exam.service.WaterUsageFeeServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
+@EnableAspectJAutoProxy
 public class MainConfiguration {
 
     @Bean
@@ -32,6 +35,11 @@ public class MainConfiguration {
     @Bean
     public ResultReport resultReport() {
         return new ResultReportImpl();
+    }
+
+    @Bean
+    public LoggerAspect loggerAspect() {
+        return new LoggerAspect();
     }
 
 }
