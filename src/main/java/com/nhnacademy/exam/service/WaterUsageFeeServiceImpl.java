@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class WaterUsageFeeServiceImpl implements WaterUsageFeeService{
     private final TariffRepository tariffRepository;
-    private final Collection<WaterBill> waterBills = new ArrayList<>();
+
 
     public WaterUsageFeeServiceImpl(TariffRepository tariffRepository) {
         this.tariffRepository = tariffRepository;
@@ -16,6 +16,7 @@ public class WaterUsageFeeServiceImpl implements WaterUsageFeeService{
 
     @Override
     public Collection<WaterBill> calculateBillTotal(int usedWaterQuantity) {
+        Collection<WaterBill> waterBills = new ArrayList<>();
         Collection<Tariff> tempTariffs =
             tariffRepository.findFeeByUsedWaterQuantity(usedWaterQuantity);
 

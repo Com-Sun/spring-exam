@@ -20,20 +20,12 @@ public class Tariff {
         this.unitPrice = unitPrice;
     }
 
-    public String getIndex() {
-        return index;
-    }
-
     public String getCity() {
         return city;
     }
 
     public String getSector() {
         return sector;
-    }
-
-    public String getLevel() {
-        return level;
     }
 
     public String getStartOfInterval() {
@@ -46,15 +38,6 @@ public class Tariff {
 
     public String getUnitPrice() {
         return unitPrice;
-    }
-
-    @Override
-    public String toString() {
-        return "\nWaterBill{" +
-            "city='" + city + '\'' +
-            ", sector='" + sector + '\'' +
-            ", unitPrice='" + unitPrice + '\'' +
-            "}";
     }
 
     public boolean isUsedWaterOverInterval(int input) {

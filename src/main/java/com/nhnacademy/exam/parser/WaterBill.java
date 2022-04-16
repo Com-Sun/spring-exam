@@ -20,6 +20,6 @@ public class WaterBill {
             ", sector='" + sector + '\'' +
             ", unitPrice='" + unitPrice + '\'' +
             ", billTotal=" + billTotal +
-            '}';
+            "}";
     }
 }
