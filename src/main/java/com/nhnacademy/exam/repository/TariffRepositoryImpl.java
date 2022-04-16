@@ -1,7 +1,7 @@
 package com.nhnacademy.exam.repository;
 
 import com.nhnacademy.exam.parser.DataParser;
-import com.nhnacademy.exam.parser.WaterBill;
+import com.nhnacademy.exam.parser.Tariff;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class TariffRepositoryImpl implements TariffRepository {
     private final DataParser dataParser;
-    private Collection<WaterBill> waterBill;
+    private Collection<Tariff> tariff;
     private boolean isLoaded = false;
 
     public TariffRepositoryImpl(DataParser dataParser) {
@@ -18,15 +18,15 @@ public class TariffRepositoryImpl implements TariffRepository {
 
     @Override
     public void csvFileLoad(String fileLocation) throws IOException {
-        this.waterBill = dataParser.parse(fileLocation);
+        this.tariff = dataParser.parse(fileLocation);
         isLoaded = true;
     }
 
     @Override
-    public Collection<WaterBill> findFeeByUsedWaterQuantity(int usedWater) {
-        return waterBill.stream()
-            .filter(waterBill -> waterBill.isUsedWaterOverInterval(usedWater) &&
-                waterBill.isUsedWaterUnderInterval(usedWater))
+    public Collection<Tariff> findFeeByUsedWaterQuantity(int usedWater) {
+        return tariff.stream()
+            .filter(tariff -> tariff.isUsedWaterOverInterval(usedWater) &&
+                tariff.isUsedWaterUnderInterval(usedWater))
             .sorted(
                 Comparator.comparingInt(waterBill -> Integer.parseInt(waterBill.getUnitPrice())))
             .limit(5)

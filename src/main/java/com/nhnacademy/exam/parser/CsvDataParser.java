@@ -9,8 +9,8 @@ import java.util.Collection;
 
 public class CsvDataParser implements DataParser {
     @Override
-    public Collection<WaterBill> parse(String fileLocation) {
-        Collection<WaterBill> waterBill = new ArrayList<>();
+    public Collection<Tariff> parse(String fileLocation) {
+        Collection<Tariff> tariff = new ArrayList<>();
         try (
             InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileLocation);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -21,8 +21,8 @@ public class CsvDataParser implements DataParser {
             while ((line = br.readLine()) != null) {
                 String[] readTariff = line.split(",");
                 if (count != 0) {
-                    waterBill.add(
-                        new WaterBill(readTariff[0], readTariff[1], readTariff[2], readTariff[3],
+                    tariff.add(
+                        new Tariff(readTariff[0], readTariff[1], readTariff[2], readTariff[3],
                             readTariff[4], readTariff[5], readTariff[6]));
                 }
                 count++;
@@ -30,6 +30,6 @@ public class CsvDataParser implements DataParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return waterBill;
+        return tariff;
     }
 }

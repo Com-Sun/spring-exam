@@ -4,6 +4,10 @@ import com.nhnacademy.exam.parser.Tariff;
 import com.nhnacademy.exam.parser.WaterBill;
 import java.util.Collection;
 
-public interface ResultReport {
-    void report(Collection<WaterBill> waterBills);
+public class ResultReportImpl implements ResultReport{
+
+    @Override
+    public void report(Collection<WaterBill> waterBills) {
+
+    }
 }

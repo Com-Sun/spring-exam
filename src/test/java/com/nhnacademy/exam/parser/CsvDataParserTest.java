@@ -12,7 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 class CsvDataParserTest {
     DataParser csvDataParser;
-    Collection<WaterBill> waterBill;
+    Collection<Tariff> tariff;
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(
         MainConfiguration.class);
 
@@ -24,7 +24,7 @@ class CsvDataParserTest {
     @Test
     @DisplayName("데이터 파싱이 제대로 동작하는가.")
     void parse() throws IOException {
-        waterBill = csvDataParser.parse("Tariff_20220331.csv");
-        assertThat(waterBill).isNotNull();
+        tariff = csvDataParser.parse("Tariff_20220331.csv");
+        assertThat(tariff).isNotNull();
     }
 }

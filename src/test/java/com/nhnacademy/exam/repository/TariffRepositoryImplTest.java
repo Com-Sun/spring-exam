@@ -5,15 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.nhnacademy.exam.config.MainConfiguration;
 import com.nhnacademy.exam.parser.CsvDataParser;
 import com.nhnacademy.exam.parser.DataParser;
-import com.nhnacademy.exam.parser.WaterBill;
 import java.io.IOException;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-class WaterBillRepositoryImplTest {
+class TariffRepositoryImplTest {
     TariffRepository tariffRepository;
     DataParser dataParser;
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(MainConfiguration.class);
