@@ -23,18 +23,16 @@ public class TariffRepositoryImpl implements TariffRepository {
     }
 
     @Override
-    public Collection<WaterBill> findFeeByUsedWaterQuantity() {
+    public Collection<WaterBill> findFeeByUsedWaterQuantity(int usedWater) {
         return waterBill.stream()
-            .filter(waterBill -> waterBill.isUsedWaterOverInterval(dataParser.) &&
+            .filter(waterBill -> waterBill.isUsedWaterOverInterval(usedWater) &&
                 waterBill.isUsedWaterUnderInterval(usedWater))
             .sorted(
                 Comparator.comparingInt(waterBill -> Integer.parseInt(waterBill.getUnitPrice())))
             .limit(5)
             .collect(Collectors.toList());
-        // map filter reduce
     }
 
-    @Override
     public boolean isLoaded() {
         return isLoaded;
     }

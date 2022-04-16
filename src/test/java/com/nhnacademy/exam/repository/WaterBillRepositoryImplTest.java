@@ -3,30 +3,35 @@ package com.nhnacademy.exam.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.nhnacademy.exam.config.MainConfiguration;
+import com.nhnacademy.exam.parser.CsvDataParser;
 import com.nhnacademy.exam.parser.DataParser;
 import com.nhnacademy.exam.parser.WaterBill;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 class WaterBillRepositoryImplTest {
     TariffRepository tariffRepository;
     DataParser dataParser;
     List<WaterBill> waterBill;
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(MainConfiguration.class);
 
     @BeforeEach
     void setUp() {
-        MainConfiguration mainConfiguration = new MainConfiguration();
-        tariffRepository = mainConfiguration.tariffRepository();
-        dataParser = mainConfiguration.dataParser();
+        tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
+        dataParser = ac.getBean("dataParser", CsvDataParser.class);
     }
 
     @Test
+    @DisplayName("저장소가 정상적으로 로드되었는지를 확인하는 테스트")
     void csvFileLoad() throws IOException {
-        assertThat(tariffRepository.isLoaded()).isFalse();
+        TariffRepositoryImpl tariffRepositoryImpl = ac.getBean("tariffRepository", TariffRepositoryImpl.class);
+        assertThat(tariffRepositoryImpl.isLoaded()).isFalse();
         tariffRepository.csvFileLoad("Tariff_20220331.csv");
-        assertThat(tariffRepository.isLoaded()).isTrue();
+        assertThat(tariffRepositoryImpl.isLoaded()).isTrue();
     }
 
     @Test

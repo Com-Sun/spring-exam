@@ -9,5 +9,4 @@ public interface TariffRepository {
 
     Collection<WaterBill> findFeeByUsedWaterQuantity(int usedWater);
 
-    boolean isLoaded();
 }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class BootStrap {
     public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
         MainConfiguration mainConfiguration = new MainConfiguration();
         TariffRepository tariffRepository;
         tariffRepository = mainConfiguration.tariffRepository();
@@ -15,7 +16,7 @@ public class BootStrap {
         tariffRepository.csvFileLoad("Tariff_20220331.csv");
         
 
-        System.out.println(tariffRepository.findFeeByUsedWaterQuantity());
+        System.out.println(tariffRepository.findFeeByUsedWaterQuantity(sc.nextInt()));
     }
 }
 

@@ -8,10 +8,9 @@ public class WaterBill {
     private final String startOfInterval;
     private final String endOfInterval;
     private final String unitPrice;
-    private final int billTotal;
 
     public WaterBill(String index, String city, String sector, String level,
-                     String startOfInterval, String endOfInterval, String unitPrice, int billTotal) {
+                     String startOfInterval, String endOfInterval, String unitPrice) {
         this.index = index;
         this.city = city;
         this.sector = sector;
@@ -19,7 +18,6 @@ public class WaterBill {
         this.startOfInterval = startOfInterval;
         this.endOfInterval = endOfInterval;
         this.unitPrice = unitPrice;
-        this.billTotal = billTotal;
     }
 
     public String getIndex() {
@@ -53,11 +51,10 @@ public class WaterBill {
     @Override
     public String toString() {
         return "\nWaterBill{" +
-            ", city='" + city + '\'' +
+            "city='" + city + '\'' +
             ", sector='" + sector + '\'' +
             ", unitPrice='" + unitPrice + '\'' +
-            ", billTotal=" + billTotal +
-            '}';
+            "}";
     }
 
     public boolean isUsedWaterOverInterval(int input) {

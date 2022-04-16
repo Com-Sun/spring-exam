@@ -6,26 +6,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Scanner;
 
-public class CsvDataParser implements DataParser{
-    Collection<WaterBill> waterBill = new ArrayList<>();
-    Scanner sc = new Scanner(System.in);
-    private final int input = sc.nextInt();
+public class CsvDataParser implements DataParser {
     @Override
-    public Collection<WaterBill> parse(String fileLocation) throws IOException {
-        try(
+    public Collection<WaterBill> parse(String fileLocation) {
+        Collection<WaterBill> waterBill = new ArrayList<>();
+        try (
             InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileLocation);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(inputStreamReader)
-            )
-        {
+        ) {
             String line = "";
             int count = 0;
             while ((line = br.readLine()) != null) {
                 String[] readTariff = line.split(",");
                 if (count != 0) {
-                    waterBill.add(new WaterBill(readTariff[0], readTariff[1], readTariff[2], readTariff[3], readTariff[4], readTariff[5], readTariff[6], Integer.parseInt(readTariff[6]) * input));
+                    waterBill.add(
+                        new WaterBill(readTariff[0], readTariff[1], readTariff[2], readTariff[3],
+                            readTariff[4], readTariff[5], readTariff[6]));
                 }
                 count++;
             }
@@ -33,9 +31,5 @@ public class CsvDataParser implements DataParser{
             e.printStackTrace();
         }
         return waterBill;
-    }
-
-    public int getInput() {
-        return input;
     }
 }
