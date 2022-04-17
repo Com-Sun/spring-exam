@@ -2,8 +2,6 @@
 
 ![](./img/2.PNG)
 
-### [소나린트 주소](http://133.186.211.156:9000/dashboard?id=com.nhnacademy.exam-hyunjin) 
-
 ### 요약
 
 * [ ] 요구사항 1
