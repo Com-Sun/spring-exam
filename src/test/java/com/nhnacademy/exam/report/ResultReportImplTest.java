@@ -22,7 +22,8 @@ class ResultReportImplTest {
     void setUp() throws IOException {
         waterUsageFeeService = ac.getBean("waterUsageFeeService", WaterUsageFeeService.class);
         tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+//        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
         resultReport = ac.getBean("resultReport", ResultReport.class);
     }
 

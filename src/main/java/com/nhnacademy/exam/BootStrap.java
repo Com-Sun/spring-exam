@@ -34,7 +34,7 @@ public class BootStrap {
         TariffRepository tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
         ResultReport resultReport = ac.getBean("resultReport", ResultReport.class);
 
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
         Scanner sc = new Scanner(System.in);
 
         boolean isContinue = true;

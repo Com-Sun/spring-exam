@@ -11,9 +11,9 @@ import java.util.Collection;
 
 /**
  * Csv파일을 파싱합니다.
- *
+ * 소나린트 VAR을 사용하라는 경고를 무시합니다.
  */
-@SuppressWarnings("squid:S6212") //var을 사용하라는 경고 무시
+@SuppressWarnings("squid:S6212")
 public class CsvDataParser implements DataParser {
     @Override
     public Collection<Tariff> parse(String fileLocation) {

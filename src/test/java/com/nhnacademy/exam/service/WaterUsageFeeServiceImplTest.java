@@ -21,13 +21,18 @@ class WaterUsageFeeServiceImplTest {
     void setUp() throws IOException {
         waterUsageFeeService = ac.getBean("waterUsageFeeService", WaterUsageFeeService.class);
         tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+//        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
     }
 
     @Test
     @DisplayName("WaterBill이 제대로 만들어지는가를 테스트.")
     void calculateBillTotalTest() {
-        assertThat(waterUsageFeeService.calculateBillTotal(1000).toString()).containsAnyOf("WaterBill{city=' 고령군 ', sector=' 공업용 ', unitPrice='370', billTotal=370000}");
+        assertThat(waterUsageFeeService.calculateBillTotal(1000).toString()).containsAnyOf("고령군");
+        assertThat(waterUsageFeeService.calculateBillTotal(1000).toString()).containsAnyOf("통영시");
+        assertThat(waterUsageFeeService.calculateBillTotal(1000).toString()).containsAnyOf("금산군");
+        assertThat(waterUsageFeeService.calculateBillTotal(1000).toString()).containsAnyOf("나주시");
+        assertThat(waterUsageFeeService.calculateBillTotal(1000).toString()).containsAnyOf("장흥군");
     }
 
 }

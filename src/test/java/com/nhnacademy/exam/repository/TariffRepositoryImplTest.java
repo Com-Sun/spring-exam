@@ -26,7 +26,8 @@ class TariffRepositoryImplTest {
     @Test
     @DisplayName("요금을 찾는 메소드 실행 시 결과 5개가 제대로 나오는지 테스트")
     void findFeeByUsedWaterQuantityTest() throws IOException {
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
-        assertThat(tariffRepository.findFeeByUsedWaterQuantity(1000).size()).isEqualTo(5);
+//        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
+        assertThat(tariffRepository.findFeeByUsedWaterQuantity(1000)).hasSize(5);
     }
 }

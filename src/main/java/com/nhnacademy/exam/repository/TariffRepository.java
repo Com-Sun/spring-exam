@@ -6,6 +6,7 @@ import java.util.Collection;
 
 public interface TariffRepository {
     void csvFileLoad(String fileLocation) throws IOException;
+    void jsonFileLoad(String fileLocation) throws IOException;
 
     Collection<Tariff> findFeeByUsedWaterQuantity(int usedWater);
 
