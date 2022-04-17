@@ -1,15 +1,16 @@
 package com.nhnacademy.exam.parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.Collection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class JsonDataParserTest {
     JsonDataParser jsonDataParser;
+    Collection<Tariff> tariff;
 
     @BeforeEach
     void setUp() {
@@ -17,8 +18,10 @@ class JsonDataParserTest {
     }
 
     @Test
-    @DisplayName("파싱이 제대로 작동하는지 테스트")
+    @DisplayName("파싱 후 데이터 303개가 제대로 들어갔는지 확인하는 테스트")
     void parse() throws IOException {
-        assertThat(jsonDataParser.parse("Tariff_20220331.json")).isNotNull();
+        tariff = jsonDataParser.parse("Tariff_20220331.json");
+        assertThat(tariff).hasSize(303);
+
     }
 }

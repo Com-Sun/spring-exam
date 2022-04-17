@@ -37,6 +37,8 @@ class ResultReportImplTest {
     @DisplayName("터미널에 제대로 값이 찍히는지 확인하는 테스트")
     void report() {
         resultReport.report(waterUsageFeeService.calculateBillTotal(1000));
-
+        assertThat(waterUsageFeeService.calculateBillTotal(1000)).hasSize(5);
     }
+
+
 }

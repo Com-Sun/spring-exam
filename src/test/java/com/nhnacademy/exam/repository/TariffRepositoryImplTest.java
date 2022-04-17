@@ -23,6 +23,7 @@ class TariffRepositoryImplTest {
         dataParser = mock(DataParser.class);
     }
 
+
     @Test
     @DisplayName("요금을 찾는 메소드 실행 시 결과 5개가 제대로 나오는지 테스트")
     void findFeeByUsedWaterQuantityTest() throws IOException {
