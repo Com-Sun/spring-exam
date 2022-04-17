@@ -26,6 +26,12 @@ public class TariffRepositoryImpl implements TariffRepository {
     }
 
     @Override
+    public void jsonFileLoad(String fileLocation) throws IOException {
+        this.tariff = dataParser.parse(fileLocation);
+        isLoaded = true;
+    }
+
+    @Override
     public Collection<Tariff> findFeeByUsedWaterQuantity(int usedWater) {
         return tariff.stream()
             .filter(s -> s.isUsedWaterOverInterval(usedWater)

@@ -3,6 +3,7 @@ package com.nhnacademy.exam.parser;
 /**
  * Tariff_20220331을 파싱하여 객체로 만든 클래스입니다.
  */
+
 public class Tariff {
     private final String index;
     private final String city;

@@ -10,8 +10,9 @@ import org.springframework.util.StopWatch;
 
 /**
  * AOP 로깅을 관리하는 클래스입니다.
+ * 소나린트 VAR을 사용하라는 경고를 무시합니다.
  */
-@SuppressWarnings("squid:S6212") //var을 사용하라는 경고 무시
+@SuppressWarnings("squid:S6212")
 @Aspect
 public class LoggerAspect {
     private static final Log log = LogFactory.getLog(LoggerAspect.class);

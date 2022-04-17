@@ -22,7 +22,8 @@ class ResultReportImplTest {
     void setUp() throws IOException {
         waterUsageFeeService = ac.getBean("waterUsageFeeService", WaterUsageFeeService.class);
         tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+//        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
         resultReport = ac.getBean("resultReport", ResultReport.class);
     }
 
@@ -36,6 +37,8 @@ class ResultReportImplTest {
     @DisplayName("터미널에 제대로 값이 찍히는지 확인하는 테스트")
     void report() {
         resultReport.report(waterUsageFeeService.calculateBillTotal(1000));
-
+        assertThat(waterUsageFeeService.calculateBillTotal(1000)).hasSize(5);
     }
+
+
 }
