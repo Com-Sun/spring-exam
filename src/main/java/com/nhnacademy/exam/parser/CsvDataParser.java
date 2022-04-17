@@ -4,16 +4,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+/**
+ * Csv파일을 파싱합니다.
+ * 소나린트 VAR을 사용하라는 경고를 무시합니다.
+ */
+@SuppressWarnings("squid:S6212")
 public class CsvDataParser implements DataParser {
     @Override
     public Collection<Tariff> parse(String fileLocation) {
         Collection<Tariff> tariff = new ArrayList<>();
         try (
             InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileLocation);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream,
+                StandardCharsets.UTF_8);
             BufferedReader br = new BufferedReader(inputStreamReader)
         ) {
             String line = "";

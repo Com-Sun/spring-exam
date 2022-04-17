@@ -1,6 +1,7 @@
 package com.nhnacademy.exam.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 import com.nhnacademy.exam.config.MainConfiguration;
 import com.nhnacademy.exam.parser.CsvDataParser;
@@ -19,20 +20,15 @@ class TariffRepositoryImplTest {
     @BeforeEach
     void setUp() {
         tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
-        dataParser = ac.getBean("dataParser", CsvDataParser.class);
+        dataParser = mock(DataParser.class);
     }
 
-    @Test
-    @DisplayName("저장소가 정상적으로 로드되었는지를 확인하는 테스트")
-    void csvFileLoad() throws IOException {
-        TariffRepositoryImpl tariffRepositoryImpl = ac.getBean("tariffRepository", TariffRepositoryImpl.class);
-        assertThat(tariffRepositoryImpl.isLoaded()).isFalse();
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
-        assertThat(tariffRepositoryImpl.isLoaded()).isTrue();
-    }
 
     @Test
-    void findFeeByUsedWaterQuantity() {
-
+    @DisplayName("요금을 찾는 메소드 실행 시 결과 5개가 제대로 나오는지 테스트")
+    void findFeeByUsedWaterQuantityTest() throws IOException {
+//        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
+        assertThat(tariffRepository.findFeeByUsedWaterQuantity(1000)).hasSize(5);
     }
 }

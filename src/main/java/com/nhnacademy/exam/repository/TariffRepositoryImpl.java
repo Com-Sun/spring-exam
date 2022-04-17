@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * 요금표 데이터를 저장하고 조회하는 클래스입니다.
+ */
 public class TariffRepositoryImpl implements TariffRepository {
     private final DataParser dataParser;
     private Collection<Tariff> tariff;
@@ -23,10 +26,16 @@ public class TariffRepositoryImpl implements TariffRepository {
     }
 
     @Override
+    public void jsonFileLoad(String fileLocation) throws IOException {
+        this.tariff = dataParser.parse(fileLocation);
+        isLoaded = true;
+    }
+
+    @Override
     public Collection<Tariff> findFeeByUsedWaterQuantity(int usedWater) {
         return tariff.stream()
-            .filter(tariff -> tariff.isUsedWaterOverInterval(usedWater) &&
-                tariff.isUsedWaterUnderInterval(usedWater))
+            .filter(s -> s.isUsedWaterOverInterval(usedWater)
+                && s.isUsedWaterUnderInterval(usedWater))
             .sorted(
                 Comparator.comparingInt(waterBill -> Integer.parseInt(waterBill.getUnitPrice())))
             .limit(5)

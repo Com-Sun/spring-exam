@@ -1,5 +1,9 @@
 package com.nhnacademy.exam.parser;
 
+/**
+ * Tariff_20220331을 파싱하여 객체로 만든 클래스입니다.
+ */
+
 public class Tariff {
     private final String index;
     private final String city;
@@ -20,20 +24,12 @@ public class Tariff {
         this.unitPrice = unitPrice;
     }
 
-    public String getIndex() {
-        return index;
-    }
-
     public String getCity() {
         return city;
     }
 
     public String getSector() {
         return sector;
-    }
-
-    public String getLevel() {
-        return level;
     }
 
     public String getStartOfInterval() {
@@ -46,15 +42,6 @@ public class Tariff {
 
     public String getUnitPrice() {
         return unitPrice;
-    }
-
-    @Override
-    public String toString() {
-        return "\nWaterBill{" +
-            "city='" + city + '\'' +
-            ", sector='" + sector + '\'' +
-            ", unitPrice='" + unitPrice + '\'' +
-            "}";
     }
 
     public boolean isUsedWaterOverInterval(int input) {

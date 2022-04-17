@@ -22,20 +22,23 @@ class ResultReportImplTest {
     void setUp() throws IOException {
         waterUsageFeeService = ac.getBean("waterUsageFeeService", WaterUsageFeeService.class);
         tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
-        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+//        tariffRepository.csvFileLoad("Tariff_20220331.csv");
+        tariffRepository.jsonFileLoad("Tariff_20220331.json");
         resultReport = ac.getBean("resultReport", ResultReport.class);
     }
 
     @Test
-    @DisplayName("Bean 주입이 제대로 되었는지 확인하는 테스트")
+    @DisplayName("Bean 주입이 프록시로 대체되었는가 테스트")
     void beanTest(){
-        assertThat(resultReport).isInstanceOf(ResultReportImpl.class);
+        assertThat(resultReport).isNotInstanceOf(ResultReportImpl.class);
     }
 
     @Test
     @DisplayName("터미널에 제대로 값이 찍히는지 확인하는 테스트")
     void report() {
         resultReport.report(waterUsageFeeService.calculateBillTotal(1000));
-
+        assertThat(waterUsageFeeService.calculateBillTotal(1000)).hasSize(5);
     }
+
+
 }
