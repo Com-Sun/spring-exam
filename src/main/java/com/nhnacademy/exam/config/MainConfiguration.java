@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+/**
+ * SpringBean 관리합니다.
+ */
 @Configuration
 @EnableAspectJAutoProxy
 public class MainConfiguration {
@@ -23,7 +26,7 @@ public class MainConfiguration {
     }
 
     @Bean
-    public DataParser dataParser () {
+    public DataParser dataParser() {
         return new CsvDataParser();
     }
 

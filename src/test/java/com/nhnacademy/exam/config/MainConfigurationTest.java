@@ -16,16 +16,16 @@ class MainConfigurationTest {
         new AnnotationConfigApplicationContext(MainConfiguration.class);
 
     @Test
-    @DisplayName("빈을 통해 구현 클래스가 제대로 만들어지는가")
+    @DisplayName("빈을 통해 구현된 클래스가 프록시로 대체되었는가")
     void tariffRepository() {
         TariffRepository tariffRepository = ac.getBean("tariffRepository", TariffRepository.class);
-        assertThat(tariffRepository).isInstanceOf(TariffRepositoryImpl.class);
+        assertThat(tariffRepository).isNotInstanceOf(TariffRepositoryImpl.class);
     }
 
     @Test
-    @DisplayName("빈을 통해 구현 클래스가 제대로 만들어지는가")
+    @DisplayName("빈을 통해 구현된 클래스가 프록시로 대체되었는가")
     void dataParser() {
         DataParser dataParser = ac.getBean("dataParser", DataParser.class);
-        assertThat(dataParser).isInstanceOf(CsvDataParser.class);
+        assertThat(dataParser).isNotInstanceOf(CsvDataParser.class);
     }
 }

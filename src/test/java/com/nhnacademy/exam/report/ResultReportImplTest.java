@@ -27,9 +27,9 @@ class ResultReportImplTest {
     }
 
     @Test
-    @DisplayName("Bean 주입이 제대로 되었는지 확인하는 테스트")
+    @DisplayName("Bean 주입이 프록시로 대체되었는가 테스트")
     void beanTest(){
-        assertThat(resultReport).isInstanceOf(ResultReportImpl.class);
+        assertThat(resultReport).isNotInstanceOf(ResultReportImpl.class);
     }
 
     @Test
